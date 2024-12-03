@@ -4,10 +4,10 @@ import numpy as np
 
 if __name__=='__main__':
     # Path to the PandaSet dataset
-    datapath = "/media/yasin/extra/projeler/pandaset-devkit/data"
+    datapath = "/kaggle/input/pandaset/pandaset"
 
     # Output path for saving the npz files
-    output_path = "/media/yasin/extra/projeler/pandaset-devkit/output"  # Replace with your desired output directory
+    output_path = "/kaggle/working/pandaready"  # Replace with your desired output directory
 
     # Initialize dataset
     dataset = DataSet(datapath)
