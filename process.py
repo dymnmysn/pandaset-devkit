@@ -35,10 +35,12 @@ if __name__=='__main__':
             ego_points[..., 2] -= 1.75  # Adjust Z for ground clearance
             intensity = pandar64_points[:, 3:4]
             image = np.concatenate((ego_points, intensity), axis=1)
-            
-            # Process semantic segmentation labels
-            label = sequence.semseg[idx].to_numpy()[:image.shape[0]].squeeze()
-            
+            try:
+                # Process semantic segmentation labels
+                label = sequence.semseg[idx].to_numpy()[:image.shape[0]].squeeze()
+            except Exception as e:
+                print(f"Error processing index {idx} in sequence {seq_name}: {e}")
+                continue
             # Save in 16-bit and 8-bit formats
             filename = f"{idx:06d}.npz"
             np.savez_compressed(os.path.join(images_dir, filename), image=image.astype(np.float16))
