@@ -1,6 +1,7 @@
 import os
 from pandaset import DataSet, geometry
 import numpy as np
+from tqdm import tqdm
 
 if __name__=='__main__':
     # Path to the PandaSet dataset
@@ -27,7 +28,7 @@ if __name__=='__main__':
         os.makedirs(labels_dir, exist_ok=True)
         
         # Iterate over all indices in the sequence
-        for idx in range(len(sequence.lidar._data_structure)):
+        for idx in tqdm(range(len(sequence.lidar._data_structure))):
             # Process lidar points
             pandar64_points = sequence.lidar[idx].to_numpy()
             ego_points = geometry.lidar_points_to_ego(pandar64_points[:, :3], sequence.lidar.poses[idx])
